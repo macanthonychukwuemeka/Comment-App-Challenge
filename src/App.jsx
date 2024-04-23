@@ -5,8 +5,7 @@ import ModalText from "./ModalText";
 function App() {
   return (
     <>
-      {/* <Comment /> */}
-      <ModalText />
+      <Comment />
     </>
   );
 }

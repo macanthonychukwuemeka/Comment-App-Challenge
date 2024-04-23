@@ -3,19 +3,19 @@ import { createContext, useState, useContext } from "react";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    setOpen(true);
   };
   const closeModal = () => {
-    setIsModalOpen(false);
+    setOpen(false);
   };
 
   return (
     <AppContext.Provider
       value={{
-        isModalOpen,
+        open,
         openModal,
         closeModal,
       }}

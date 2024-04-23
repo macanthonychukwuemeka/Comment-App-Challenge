@@ -10,19 +10,11 @@ import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
 import TextForm from "./TextForm";
 
-const ModalText = () => {
-  const [open, setOpen] = useState(false);
-  const { isModalOpen, setisModalOpen } = useGlobalContext();
-  console.log(open);
+const ModalText = ({ addComment }) => {
+  const { open, openModal, closeModal } = useGlobalContext();
+
   return (
     <Box>
-      <Button
-        onClick={() => {
-          setOpen(true);
-        }}
-      >
-        Open modal
-      </Button>
       <Modal
         // hideBackdrop
 
@@ -37,11 +29,9 @@ const ModalText = () => {
           borderRadius: 5,
         }}
         open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
+        onClose={closeModal}
       >
-        <TextForm />
+        <TextForm addComment={addComment} />
       </Modal>
     </Box>
   );

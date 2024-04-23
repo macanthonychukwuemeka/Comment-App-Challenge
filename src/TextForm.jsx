@@ -7,16 +7,21 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useGlobalContext } from "./Context";
+import { nanoid } from "nanoid";
+const TextForm = ({ addComment }) => {
+  const { open, openModal, closeModal } = useGlobalContext();
 
-const TextForm = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
+    addComment(e.target.value);
     console.log(value);
+    closeModal();
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} value={value}>
         <Box sx={{ py: 5, px: 2 }}>
           <Typography
             fontfamily="monospace"
@@ -62,31 +67,17 @@ const TextForm = () => {
               }}
             />
           </Typography>
-          {/* <p id="parent-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>{" "} */}
+
           <Box
             display="flex"
             justifyContent={"end"}
             paddingRight={1}
             paddingTop={2}
           >
-            <Button
-              variant="contained"
-              sx={{ mr: 2 }}
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
+            <Button variant="contained" sx={{ mr: 2 }} onClick={closeModal}>
               cancel
             </Button>
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
+            <Button variant="contained" type="submit" onClick={handleSubmit}>
               Submit
             </Button>
           </Box>

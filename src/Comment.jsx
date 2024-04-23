@@ -1,7 +1,11 @@
-import { Box, Button, Container, Typography, colors } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CommentIcon from "@mui/icons-material/Comment";
 import ArticleSharpIcon from "@mui/icons-material/ArticleSharp";
 import styled from "styled-components";
+import { useGlobalContext } from "./Context";
+import ModalText from "./ModalText";
+import { nanoid } from "nanoid";
+import { useState } from "react";
 
 // background: rgb(34,35,152);
 // background: linear-gradient(155deg, rgba(34,35,152,1) 45%, rgba(7,2,55,1) 50%);
@@ -14,6 +18,15 @@ const TextlessUnderline = styled.div`
   margin-top: 10px;
 `;
 const Comment = () => {
+  const { openModal } = useGlobalContext();
+  const [comment, setComment] = useState([]);
+
+  const addComment = (newComment) => {
+    setComment([
+      ...value,
+      { id: nanoid(), task: newComment, completed: false, isEdithing: false },
+    ]);
+  };
   return (
     <Box
       width="100%"
@@ -55,7 +68,6 @@ const Comment = () => {
         <Box
           display="flex"
           alignSelf="center"
-          align
           justifyContent={"end"}
           color=" #8C6CF7"
         >
@@ -64,6 +76,7 @@ const Comment = () => {
             fontFamily={"revert"}
             fontStyle={"oblique"}
             sx={{ px: 2, bgcolor: "#2A2630", fontFamily: "cursive" }}
+            onClick={openModal}
           >
             <ArticleSharpIcon sx={{ pr: 1 }} />
             New Post
@@ -73,17 +86,22 @@ const Comment = () => {
       <Box>
         <TextlessUnderline />
       </Box>
-      <Typography
-        variant="h5"
-        textAlign={"center"}
-        sx={{
-          color: "white",
-          pt: "2rem",
-        }}
-      >
-        There are no posts yet. <br />{" "}
-        <Typography paddingTop={1}>Start adding some! </Typography>
-      </Typography>
+      {!openModal ? (
+        <Typography
+          variant="h5"
+          textAlign={"center"}
+          sx={{
+            color: "white",
+            pt: "2rem",
+          }}
+        >
+          There are no posts yet. There are no posts yet. <br />
+          <Typography paddingTop={1}>Start adding some! </Typography>
+        </Typography>
+      ) : (
+        ""
+      )}
+      <ModalText addComment={addComment} />
     </Box>
   );
 };

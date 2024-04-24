@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
-import TextForm from "./CommentForm";
+import CommentForm from "./CommentForm";
 
-const ModalText = ({ addComment }) => {
+const ModalComment = ({ addComment }) => {
   const { open, closeModal } = useGlobalContext();
 
   return (
@@ -31,9 +31,9 @@ const ModalText = ({ addComment }) => {
         open={open}
         onClose={closeModal}
       >
-        <TextForm addComment={addComment} />
+        <CommentForm addComment={addComment} />
       </Modal>
     </Box>
   );
 };
-export default ModalText;
+export default ModalComment;

@@ -9,11 +9,15 @@ import {
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
 import { nanoid } from "nanoid";
+import Comment from "./Comment";
+import addComment from "./Comment";
+import CommentItems from "./CommentItems";
 
-const TextForm = ({ addComment }) => {
+const CommentForm = ({ addComment }) => {
   const { closeModal } = useGlobalContext();
 
   const [value, setValue] = useState({ name: "", comment: "" });
+  // const [comments, setComments] = useState([]);
 
   const handleChange = (e) => {
     setValue((prevstat) => ({ ...prevstat, [e.target.name]: e.target.value }));
@@ -21,8 +25,14 @@ const TextForm = ({ addComment }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(value);
-    console.log(value);
+    addComment({
+      id: Date.now(),
+      name: value.name,
+      comment: value.comment,
+    });
+    setValue({ name: "", comment: "" });
+    // Reset the form fields
+
     closeModal();
   };
   return (
@@ -30,7 +40,7 @@ const TextForm = ({ addComment }) => {
       <form onSubmit={handleSubmit} value={value}>
         <Box sx={{ py: 5, px: 2 }}>
           <Typography
-            fontfamily="monospace"
+            fontFamily="monospace"
             fontSize={20}
             color={"white"}
             sx={{ pb: 2 }}
@@ -68,7 +78,7 @@ const TextForm = ({ addComment }) => {
               multiline
               rows={1}
               variant="outlined"
-              fontfamily="monospace"
+              fontFamily="monospace"
               inputProps={{ style: { textTransform: "capitalize" } }}
               sx={{
                 width: " 40ch",
@@ -95,8 +105,10 @@ const TextForm = ({ addComment }) => {
           </Box>
         </Box>
       </form>
+      {/* <CommentItems comments={comments} /> */}
+      {/* <Comment value={value} setValue={setValue} /> */}
     </>
   );
 };
 
-export default TextForm;
+export default CommentForm;

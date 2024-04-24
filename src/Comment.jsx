@@ -3,10 +3,11 @@ import CommentIcon from "@mui/icons-material/Comment";
 import ArticleSharpIcon from "@mui/icons-material/ArticleSharp";
 import styled from "styled-components";
 import { useGlobalContext } from "./Context";
-import ModalText from "./ModalComment";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import CommentItems from "./CommentItems";
+import ModalComment from "./ModalComment";
+import CommentForm from "./CommentForm";
 
 // background: rgb(34,35,152);
 // background: linear-gradient(155deg, rgba(34,35,152,1) 45%, rgba(7,2,55,1) 50%);
@@ -20,24 +21,27 @@ const TextlessUnderline = styled.div`
 `;
 const Comment = () => {
   const { openModal } = useGlobalContext();
-  const [inputs, setInputs] = useState([]);
-  console.log(inputs);
+  const [comments, setComments] = useState([]);
+  console.log(comments);
 
-  const addComment = ({ value }) => {
-    setInputs([
-      ...inputs,
-      {
-        id: nanoid(),
-        name: value.name,
-        comment: value.comment,
-        completed: false,
-        isEditing: false,
-      },
-    ]);
+  const addComment = (newComment) => {
+    setComments((prevComments) => [...prevComments, newComment]);
   };
-  console.log(value);
 
-  // after the first submit, the value will remain the input state as initial state
+  // const addComment = (newComment) => {
+  //   setCommets((prevcomments) => [
+  //     ...prevcomments,
+  //     {
+  //       id: nanoid(),
+  //       name: newComment.name,
+  //       comment: newComment.comment,
+  //       completed: false,
+  //       isEditing: false,
+  //     },
+  //   ]);
+  // };
+
+  // After the first submit, the value will remain the input state as initial state
   return (
     <Box
       width="100%"
@@ -56,7 +60,7 @@ const Comment = () => {
         margin="auto"
         alignContent={"space-between"}
         justifyContent={"space-between"}
-        sx={{ textDecoration: "un" }}
+        // sx={{ textDecoration: "un" }}
       >
         <Box display="flex" alignItems={"center"}>
           <CommentIcon
@@ -97,25 +101,22 @@ const Comment = () => {
       <Box>
         <TextlessUnderline />
       </Box>
-      {!openModal ? (
-        ""
-      ) : (
-        <Typography
-          variant="h5"
-          textAlign={"center"}
-          sx={{
-            color: "white",
-            pt: "2rem",
-          }}
-        >
-          There are no posts yet. There are no posts yet. <br />
-          <Typography paddingTop={1}>Start adding some! </Typography>
-        </Typography>
-      )}
-      <ModalText addComment={addComment} />
-      {inputs.map((input, index) => (
-        <CommentItems />
-      ))}
+      <Typography
+        variant="h5"
+        textAlign={"center"}
+        sx={{
+          color: "white",
+          pt: "2rem",
+        }}
+      >
+        There are no posts yet. There are no posts yet. <br />
+        <Typography paddingTop={1}>Start adding some! </Typography>
+      </Typography>
+      <ModalComment addComment={addComment} />
+      <CommentItems comments={comments} />
+      {/* {inputs.map((input, index) => (
+        <CommentItems key={input.id} input={input} />
+      ))} */}
     </Box>
   );
 };

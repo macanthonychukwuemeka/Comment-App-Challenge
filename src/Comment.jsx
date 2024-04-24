@@ -3,9 +3,10 @@ import CommentIcon from "@mui/icons-material/Comment";
 import ArticleSharpIcon from "@mui/icons-material/ArticleSharp";
 import styled from "styled-components";
 import { useGlobalContext } from "./Context";
-import ModalText from "./ModalText";
+import ModalText from "./ModalComment";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import CommentItems from "./CommentItems";
 
 // background: rgb(34,35,152);
 // background: linear-gradient(155deg, rgba(34,35,152,1) 45%, rgba(7,2,55,1) 50%);
@@ -19,14 +20,24 @@ const TextlessUnderline = styled.div`
 `;
 const Comment = () => {
   const { openModal } = useGlobalContext();
-  const [comment, setComment] = useState([]);
+  const [inputs, setInputs] = useState([]);
+  console.log(inputs);
 
-  const addComment = (newComment) => {
-    setComment([
-      ...value,
-      { id: nanoid(), task: newComment, completed: false, isEdithing: false },
+  const addComment = ({ value }) => {
+    setInputs([
+      ...inputs,
+      {
+        id: nanoid(),
+        name: value.name,
+        comment: value.comment,
+        completed: false,
+        isEditing: false,
+      },
     ]);
   };
+  console.log(value);
+
+  // after the first submit, the value will remain the input state as initial state
   return (
     <Box
       width="100%"
@@ -87,6 +98,8 @@ const Comment = () => {
         <TextlessUnderline />
       </Box>
       {!openModal ? (
+        ""
+      ) : (
         <Typography
           variant="h5"
           textAlign={"center"}
@@ -98,10 +111,11 @@ const Comment = () => {
           There are no posts yet. There are no posts yet. <br />
           <Typography paddingTop={1}>Start adding some! </Typography>
         </Typography>
-      ) : (
-        ""
       )}
       <ModalText addComment={addComment} />
+      {inputs.map((input, index) => (
+        <CommentItems />
+      ))}
     </Box>
   );
 };

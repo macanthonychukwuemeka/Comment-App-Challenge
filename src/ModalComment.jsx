@@ -8,10 +8,10 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
-import TextForm from "./TextForm";
+import TextForm from "./CommentForm";
 
 const ModalText = ({ addComment }) => {
-  const { open, openModal, closeModal } = useGlobalContext();
+  const { open, closeModal } = useGlobalContext();
 
   return (
     <Box>

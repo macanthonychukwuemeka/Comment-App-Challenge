@@ -9,13 +9,19 @@ import {
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
 import { nanoid } from "nanoid";
-const TextForm = ({ addComment }) => {
-  const { open, openModal, closeModal } = useGlobalContext();
 
-  const [value, setValue] = useState([]);
+const TextForm = ({ addComment }) => {
+  const { closeModal } = useGlobalContext();
+
+  const [value, setValue] = useState({ name: "", comment: "" });
+
+  const handleChange = (e) => {
+    setValue((prevstat) => ({ ...prevstat, [e.target.name]: e.target.value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(e.target.value);
+    addComment(value);
     console.log(value);
     closeModal();
   };
@@ -32,9 +38,12 @@ const TextForm = ({ addComment }) => {
             Text
           </Typography>
           <TextField
+            onChange={handleChange}
+            value={value.name}
             label="Text"
             type="text"
-            onChange={(e) => setValue(e.target.value)}
+            name="name"
+            // onChange={(e) => setValue(e.target.value)}
             multiline
             rows={4}
             variant="outlined"
@@ -52,6 +61,9 @@ const TextForm = ({ addComment }) => {
           <Typography fontSize={16} paddingTop={2} color={"white"}>
             Your Name
             <TextField
+              onChange={handleChange}
+              name="comment"
+              value={value.comment}
               label="Text"
               multiline
               rows={1}

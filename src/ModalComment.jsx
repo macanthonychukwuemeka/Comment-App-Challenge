@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
 import CommentForm from "./CommentForm";
@@ -17,7 +10,6 @@ const ModalComment = ({ addComment }) => {
     <Box>
       <Modal
         // hideBackdrop
-
         sx={{
           width: 395,
           display: "flex",

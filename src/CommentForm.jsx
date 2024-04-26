@@ -9,15 +9,11 @@ import {
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
 import { nanoid } from "nanoid";
-import Comment from "./Comment";
-import addComment from "./Comment";
-import CommentItems from "./CommentItems";
 
 const CommentForm = ({ addComment }) => {
   const { closeModal } = useGlobalContext();
 
   const [value, setValue] = useState({ name: "", comment: "" });
-  // const [comments, setComments] = useState([]);
 
   const handleChange = (e) => {
     setValue((prevstat) => ({ ...prevstat, [e.target.name]: e.target.value }));
@@ -53,7 +49,6 @@ const CommentForm = ({ addComment }) => {
             label="Text"
             type="text"
             name="name"
-            // onChange={(e) => setValue(e.target.value)}
             multiline
             rows={4}
             variant="outlined"
@@ -74,7 +69,7 @@ const CommentForm = ({ addComment }) => {
               onChange={handleChange}
               name="comment"
               value={value.comment}
-              label="Text"
+              label="your Name"
               multiline
               rows={1}
               variant="outlined"
@@ -105,8 +100,6 @@ const CommentForm = ({ addComment }) => {
           </Box>
         </Box>
       </form>
-      {/* <CommentItems comments={comments} /> */}
-      {/* <Comment value={value} setValue={setValue} /> */}
     </>
   );
 };

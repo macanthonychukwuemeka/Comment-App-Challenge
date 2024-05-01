@@ -4,14 +4,22 @@ import React from "react";
 const CommentItems = ({ comments }) => {
   return (
     <Box width={"100%"} minHeight={"70"} padding={2}>
-      <Grid container spacing={-4}>
+      <Grid
+        container
+        spacing={-4}
+        justifyContent={"center"}
+        alignContent={"center"}
+      >
         {comments.map((comment) => (
           <Grid
             item
             spacing={-5}
             xs={12}
-            md={6}
+            sm={5}
+            // md={5}
+            lg={3}
             margin={2}
+            border={"Highlight"}
             key={comment.id}
             sx={{
               p: 2,

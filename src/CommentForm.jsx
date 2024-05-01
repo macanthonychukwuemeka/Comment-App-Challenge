@@ -1,35 +1,37 @@
-import {
-  Box,
-  Button,
-  Container,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useGlobalContext } from "./Context";
 import { nanoid } from "nanoid";
 
 const CommentForm = ({ addComment }) => {
-  const { closeModal } = useGlobalContext();
+  const { closeModal, openModal } = useGlobalContext();
 
   const [value, setValue] = useState({ name: "", comment: "" });
 
   const handleChange = (e) => {
     setValue((prevstat) => ({ ...prevstat, [e.target.name]: e.target.value }));
+    //This will pull the values stored in the name data type
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment({
-      id: Date.now(),
-      name: value.name,
-      comment: value.comment,
-    });
-    setValue({ name: "", comment: "" });
-    // Reset the form fields
 
-    closeModal();
+    const { name, comment } = value;
+    if (!name || (!comment && name.length === 0) || comment.length === 0) {
+      alert("Incomplete values, not executing submit logic");
+      openModal();
+    } else {
+      addComment({
+        id: Date.now(),
+        name: value.name,
+        comment: value.comment,
+      });
+      closeModal();
+      setValue({ name: "", comment: "" });
+
+      return;
+    }
+    // Reset the form fields
   };
   return (
     <>
@@ -67,6 +69,7 @@ const CommentForm = ({ addComment }) => {
             Your Name
             <TextField
               onChange={handleChange}
+              type="text"
               name="comment"
               value={value.comment}
               label="your Name"

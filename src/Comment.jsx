@@ -21,8 +21,7 @@ const TextlessUnderline = styled.div`
 const Comment = () => {
   const { openModal } = useGlobalContext();
   const [comments, setComments] = useState([]);
-  console.log(comments.length);
-  console.log(openModal);
+
   const addComment = (newComment) => {
     setComments((prevComments) => [...prevComments, newComment]);
   };
@@ -51,7 +50,6 @@ const Comment = () => {
           <CommentIcon
             sx={{
               mr: 3,
-
               color: "#ECE1FA",
               fontSize: 35,
             }}
@@ -86,7 +84,7 @@ const Comment = () => {
       <Box>
         <TextlessUnderline />
       </Box>
-      {comments.lenght === 0 ? (
+      {comments.length === 0 ? (
         <Typography
           variant="h5"
           textAlign={"center"}
@@ -95,7 +93,7 @@ const Comment = () => {
             pt: "2rem",
           }}
         >
-          There are no posts yet. There are no posts yet. <br />
+          There are no posts yet. <br />
           <Typography paddingTop={1}>Start adding some! </Typography>
         </Typography>
       ) : (

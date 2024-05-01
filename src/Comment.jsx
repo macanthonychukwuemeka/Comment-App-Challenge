@@ -19,7 +19,7 @@ const TextlessUnderline = styled.div`
   margin-top: 10px;
 `;
 const Comment = () => {
-  const { openModal } = useGlobalContext();
+  const { openModal, closeModal } = useGlobalContext();
   const [comments, setComments] = useState([]);
 
   const addComment = (newComment) => {
@@ -51,13 +51,13 @@ const Comment = () => {
             sx={{
               mr: 3,
               color: "#ECE1FA",
-              fontSize: 35,
+              fontSize: { xs: 24, md: 34 },
             }}
           />
           <Typography
-            variant="h3"
-            fontFamily={"fantasy"}
-            //   fontSize={35}
+            variant="h1"
+            fontFamily={"monospace"}
+            fontSize={{ xs: 24, md: 34 }}
             color="#ECE1FA"
           >
             REACT POSTER
@@ -76,7 +76,7 @@ const Comment = () => {
             sx={{ px: 2, bgcolor: "#2A2630", fontFamily: "cursive" }}
             onClick={openModal}
           >
-            <ArticleSharpIcon sx={{ pr: 1 }} />
+            <ArticleSharpIcon sx={{ pr: 1, fontSize: { xs: 24, md: 34 } }} />
             New Post
           </Button>
         </Box>
@@ -84,21 +84,28 @@ const Comment = () => {
       <Box>
         <TextlessUnderline />
       </Box>
-      {comments.length === 0 ? (
+
+      {comments.length === 0 || !openModal ? (
         <Typography
           variant="h5"
           textAlign={"center"}
           sx={{
             color: "white",
             pt: "2rem",
+            fontFamily: "inherit",
+            fontSize: { xs: 28, md: 37 },
           }}
         >
           There are no posts yet. <br />
-          <Typography paddingTop={1}>Start adding some! </Typography>
+          <Typography
+            paddingTop={1}
+            fontFamily={"inherit"}
+            fontSize={{ xs: 20, md: 30 }}
+          >
+            Start adding some!
+          </Typography>
         </Typography>
-      ) : (
-        ""
-      )}
+      ) : null}
 
       <ModalComment addComment={addComment} />
       <CommentItems comments={comments} />

@@ -17,6 +17,7 @@ const ModalComment = ({ addComment }) => {
           alignSelf: "center",
           m: 0,
           margin: "auto",
+          mt: 18,
           background: "rgb(34, 35, 152)",
           borderRadius: 5,
         }}

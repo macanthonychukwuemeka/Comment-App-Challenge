@@ -39,6 +39,7 @@ const Comment = () => {
     >
       <Box
         width="75%"
+        xs={{ w: "95" }}
         display="flex"
         paddingTop={10}
         paddingBottom={1}
@@ -93,14 +94,14 @@ const Comment = () => {
             color: "white",
             pt: "2rem",
             fontFamily: "inherit",
-            fontSize: { xs: 28, md: 37 },
+            fontSize: { xs: 20, md: 30, lg: 36 },
           }}
         >
           There are no posts yet. <br />
           <Typography
             paddingTop={1}
             fontFamily={"inherit"}
-            fontSize={{ xs: 20, md: 30 }}
+            fontSize={{ xs: 19, md: 28 }}
           >
             Start adding some!
           </Typography>

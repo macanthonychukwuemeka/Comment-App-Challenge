@@ -35,11 +35,26 @@ const CommentForm = ({ addComment }) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} value={value}>
-        <Box sx={{ py: 5, px: 2 }}>
+      <form
+        onSubmit={handleSubmit}
+        value={value}
+        display={"flex"}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Box
+          sx={{ py: 5, px: 2, m: 0, margin: "auto" }}
+
+          // display={"flex"}
+          // flexDirection={"column"}
+          // justifyContent="center"
+          // alignContent={"center"}
+          // alignItems="center"
+        >
           <Typography
             fontFamily="monospace"
             fontSize={20}
+            textAlign={"left"}
             color={"white"}
             sx={{ pb: 2 }}
           >
@@ -53,10 +68,13 @@ const CommentForm = ({ addComment }) => {
             name="name"
             multiline
             rows={4}
+            // width={"5rem"}
             variant="outlined"
             inputProps={{ style: { textTransform: "capitalize" } }}
             sx={{
               width: " 45ch",
+              width: { xs: "120%", sm: "120%", md: "120%" },
+              // width:{xs:}
               borderRadius: 2,
               color: "yellow",
               bgcolor: "white",
@@ -79,7 +97,10 @@ const CommentForm = ({ addComment }) => {
               fontFamily="monospace"
               inputProps={{ style: { textTransform: "capitalize" } }}
               sx={{
-                width: " 40ch",
+                width: " 45ch",
+                width: { xs: "120%", sm: "120%", md: "120%" },
+                // display: "flex",
+                // alignSelf: "right",
                 borderRadius: 2,
                 color: "yellow",
                 bgcolor: "white",
@@ -93,6 +114,7 @@ const CommentForm = ({ addComment }) => {
             justifyContent={"end"}
             paddingRight={1}
             paddingTop={2}
+            alignItems={"right"}
           >
             <Button variant="contained" sx={{ mr: 2 }} onClick={closeModal}>
               cancel

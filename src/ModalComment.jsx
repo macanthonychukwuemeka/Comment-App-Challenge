@@ -10,8 +10,9 @@ const ModalComment = ({ addComment }) => {
     <Box>
       <Modal
         // hideBackdrop
+        // width="395rem"
         sx={{
-          width: 395,
+          width: "23rem",
           display: "flex",
           justifySelf: "center",
           alignSelf: "center",

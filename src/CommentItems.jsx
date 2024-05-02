@@ -3,24 +3,13 @@ import React from "react";
 
 const CommentItems = ({ comments }) => {
   return (
-    <Box
-      display={"flex"}
-      justifyContent={"end"}
-      alignContent={"center"}
-      // sx={{ m: 0, margin: "auto" }}
-      width={"100%"}
-      minHeight={"70"}
-      marginLeft={6.5}
-      padding={2}
-    >
-      <Grid container spacing={-4}>
+    <Box width={"100%"} minHeight={"70"} padding={2}>
+      <Grid justifyContent={"center"} alignContent={"center"} container>
         {comments.map((comment) => (
           <Grid
-            item
-            spacing={-5}
+            items
             xs={12}
             sm={5}
-            // md={5}
             lg={3}
             margin={2}
             border={"Highlight"}

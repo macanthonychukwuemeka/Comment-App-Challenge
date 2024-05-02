@@ -39,11 +39,10 @@ const Comment = () => {
     >
       <Box
         width="75%"
-        xs={{ w: "95" }}
+        sx={{ m: "0", margin: "auto" }}
         display="flex"
         paddingTop={10}
         paddingBottom={1}
-        margin="auto"
         alignContent={"space-between"}
         justifyContent={"space-between"}
       >
@@ -85,7 +84,6 @@ const Comment = () => {
       <Box>
         <TextlessUnderline />
       </Box>
-
       {comments.length === 0 || !openModal ? (
         <Typography
           variant="h5"
@@ -107,9 +105,15 @@ const Comment = () => {
           </Typography>
         </Typography>
       ) : null}
-
+      <Box
+        display="flex"
+        justifyContent={"center"}
+        alignContent={"center"}
+        sx={{ m: "0", margin: "auto" }}
+      >
+        <CommentItems comments={comments} />
+      </Box>{" "}
       <ModalComment addComment={addComment} />
-      <CommentItems comments={comments} />
     </Box>
   );
 };

@@ -72,7 +72,7 @@ const CommentForm = ({ addComment }) => {
             variant="outlined"
             inputProps={{ style: { textTransform: "capitalize" } }}
             sx={{
-              width: " 45ch",
+              // width: " 45ch",
               width: { xs: "120%", sm: "120%", md: "120%" },
               // width:{xs:}
               borderRadius: 2,
@@ -97,7 +97,7 @@ const CommentForm = ({ addComment }) => {
               fontFamily="monospace"
               inputProps={{ style: { textTransform: "capitalize" } }}
               sx={{
-                width: " 45ch",
+                // width: " 45ch",
                 width: { xs: "120%", sm: "120%", md: "120%" },
                 // display: "flex",
                 // alignSelf: "right",
